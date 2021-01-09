@@ -29,6 +29,7 @@ public class MainAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
+//        return viewHolder based on item type
         switch (viewType) {
             case MENU_ITEM_VIEW_TYPE:
                 View menuItemLayoutView = LayoutInflater.from(parent.getContext())
@@ -53,6 +54,7 @@ public class MainAdapter extends RecyclerView.Adapter {
                 ((OrderHolder) holder).textView.setText(items.get(position));
                 break;
             case FRAGMENT_DETAILS_VIEW_TYPE:
+//                check if fragment item type, call interface to handle it in MainActivity and replace current item with our fragment
                 onOpenFragmentListener.onOpenFragment(((OrderHolderFragment) holder).fragmentContainer.getId());
 
                 break;
@@ -87,6 +89,7 @@ public class MainAdapter extends RecyclerView.Adapter {
     public int getItemViewType(int position) {
 
 
+// return Fragment item type for first item
         if (position == 0) {
             return FRAGMENT_DETAILS_VIEW_TYPE;
         } else {

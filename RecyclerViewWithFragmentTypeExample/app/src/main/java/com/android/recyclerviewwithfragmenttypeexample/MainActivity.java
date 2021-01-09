@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
 
 
-        mainFragment=new MainFragment();
+        mainFragment = new MainFragment();
 
 
         //set layout Manager
@@ -47,17 +47,20 @@ public class MainActivity extends AppCompatActivity {
         items.add("item 14");
         items.add("item 15");
 
-        addHeaderToRecycler(items);
+        // add fragment type as first item to
+        addFragmentTypeToRecycler(items);
+
+
         //set adapter
         MainAdapter adapter = new MainAdapter(items, new OnOpenFragmentListener() {
             @Override
             public void onOpenFragment(int viewId) {
 
-
+// replace first RecyclerView item with our fragment
                 try {
                     FragmentManager fragmentManager = getSupportFragmentManager();
 
-
+// check if fragment is added
                     if (mainFragment.isAdded()) {
                         fragmentManager.popBackStackImmediate(MainFragment.TAG, 0);
 
@@ -78,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void addHeaderToRecycler(List<String> items) {
+    private void addFragmentTypeToRecycler(List<String> items) {
         if (items.isEmpty() || items.get(0) != null) {
             items.add(0, null);
 
